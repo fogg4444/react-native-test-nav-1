@@ -32,24 +32,9 @@ class SecondView extends React.Component {
 }
 
 //////////////////////////////////////////////////////////
-
-
-
-class Root extends React.Component {
-
+class NavWrapper extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      navigation: {
-
-        index: 0,
-        routes: [
-          {key: 'first', title: 'First Page'},
-          {key: 'second', title: 'Second Page'}
-        ]
-
-      }
-    }
   }
 
   handleNavigate() {
@@ -61,25 +46,26 @@ class Root extends React.Component {
   }
 
   renderScene() {
-    // console.log('renderScene', this)
-
+    console.log('renderScene', this)
     return <FirstView navTo={this.navTo.bind(this)}/>
-
   }
-
 
   render() {
-    console.log('------ this.props', this)
-    return <Provider store={store}>
-    <NavigationCardStack
+    return <NavigationCardStack
       direction='vertical'
-      navigationState={this.state.navigation}
+      navigationState={this.props.navState}
       onNavigate={this.handleNavigate.bind(this)}
       renderScene={this.renderScene.bind(this)} />
-    </Provider>
   }
 }
+let mapStateToProps = (state) => ({
+  navState: state.navState
+})
 
+let mapDispatchToProps = (dispatch) => ({
+  // navActions: bindActionCreators( navActions, dispatch ),
+})
+let NavWrapperConnected = connect(mapStateToProps, mapDispatchToProps)(NavWrapper)
 
 const styles = StyleSheet.create({
   container: {
@@ -99,28 +85,19 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 })
+////////////////////////////////////////////////////
 
-let mapStateToProps = (state) => ({
-  navState: state.navState
-})
+class Root extends React.Component {
 
-let mapDispatchToProps = (dispatch) => ({
-  // navActions: bindActionCreators( navActions, dispatch ),
-})
-
-export default Root
-// export default connect(mapStateToProps, mapDispatchToProps)(Root)
-
-
-
-
-
-class NavWrapper extends React.Component {
   constructor(props) {
     super(props)
   }
 
   render() {
-    return
+    return <Provider store={store}>
+      <NavWrapperConnected />
+    </Provider>
   }
 }
+
+export default Root
