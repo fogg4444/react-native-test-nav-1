@@ -18,6 +18,9 @@ import {
   Provider
 } from 'react-redux'
 
+
+import store from '../store/index'
+
 import navActions from '../actions/navActions'
 
 export {
@@ -34,6 +37,10 @@ export {
 
   connect,
   Provider,
-  
-  navActions
+
+
+  store,
+
+  navActions,
+
 }

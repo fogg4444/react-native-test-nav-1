@@ -1,25 +1,18 @@
 
-import React from 'react'
-
 import {
+  React,
   connect,
-  Provider
-} from 'react-redux'
-
-import { bindActionCreators } from 'redux'
-
-import navActions from '../../actions/navActions'
-
-import store from '../../store/index'
-
-import {
+  Provider,
+  bindActionCreators,
+  navActions,
+  store,
   View,
   Text,
   Button,
   StyleSheet,
   BackAndroid,
   NavigationExperimental
-} from 'react-native'
+} from '../../config/globalImports'
 
 const {
   CardStack: NavigationCardStack

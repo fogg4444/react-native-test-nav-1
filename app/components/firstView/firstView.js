@@ -12,7 +12,7 @@ import {
 
 class FirstView extends React.Component {
   render() {
-    console.log('this', this)
+    // console.log('this', this)
     return <View style={styles.container}>
       <Text style={styles.welcome}>
         First View
@@ -32,7 +32,6 @@ let mapDispatchToProps = (dispatch) => ({
 
 // export default FirstView
 export default connect(mapStateToProps, mapDispatchToProps)(FirstView)
-
 
 
 const styles = StyleSheet.create({
