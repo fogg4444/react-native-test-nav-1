@@ -4,19 +4,86 @@ import React from 'react'
 import {
   View,
   Text,
-  StyleSheet
+  Button,
+  StyleSheet,
+  BackAndroid,
+  NavigationExperimental
 } from 'react-native'
 
-class Root extends React.Component {
+const {
+  CardStack: NavigationCardStack
+} = NavigationExperimental
 
+
+class FirstView extends React.Component {
   render() {
     return <View style={styles.container}>
       <Text style={styles.welcome}>
-        Welcome to React Native!
+        First View
       </Text>
+      <Button title="Go" onPress={this.props.navTo.bind(this, 'secondView')}/>
     </View>
   }
 }
+
+class SecondView extends React.Component {
+  render() {
+    return <View style={styles.container}>
+      <Text style={styles.welcome}>
+        Second View
+      </Text>
+      <Button title='Go' onPress={this.props.navTo.bind(this, 'firstView')}/>
+    </View>
+  }
+}
+
+//////////////////////////////////////////////////////////
+
+
+
+class Root extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      navigation: {
+        index: 0,
+        routes: [
+          {key: 'first'}
+        ]
+      }
+    }
+  }
+
+  handleNavigate() {
+    console.log('----- handle navigate')
+  }
+
+  navTo(route) {
+    console.log('nav to route', route)
+  }
+
+  renderScene() {
+    console.log('renderScene', this)
+
+    return <FirstView navTo={this.navTo.bind(this)}/>
+
+  }
+
+
+
+  render() {
+    return <NavigationCardStack
+      direction='vertical'
+      navigationState={this.state.navigation}
+      onNavigate={this.handleNavigate.bind(this)}
+      renderScene={this.renderScene.bind(this)} />
+  }
+}
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
