@@ -1,6 +1,8 @@
 
 import React from 'react'
 
+import { connect } from 'react-redux'
+
 import {
   View,
   Text,
@@ -47,10 +49,13 @@ class Root extends React.Component {
     super(props)
     this.state = {
       navigation: {
+
         index: 0,
         routes: [
-          {key: 'first'}
+          {key: 'first', title: 'First Page'},
+          {key: 'second', title: 'Second Page'}
         ]
+
       }
     }
   }
