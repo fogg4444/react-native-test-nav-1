@@ -1,7 +1,16 @@
 
 import React from 'react'
 
-import { connect } from 'react-redux'
+import {
+  connect,
+  Provider
+} from 'react-redux'
+
+import { bindActionCreators } from 'redux'
+
+import navActions from '../../actions/navActions'
+
+import store from '../../store/index'
 
 import {
   View,
@@ -16,17 +25,7 @@ const {
   CardStack: NavigationCardStack
 } = NavigationExperimental
 
-
-class FirstView extends React.Component {
-  render() {
-    return <View style={styles.container}>
-      <Text style={styles.welcome}>
-        First View
-      </Text>
-      <Button title="Go" onPress={this.props.navTo.bind(this, 'secondView')}/>
-    </View>
-  }
-}
+import FirstView from '../firstView/firstView'
 
 class SecondView extends React.Component {
   render() {
@@ -69,25 +68,23 @@ class Root extends React.Component {
   }
 
   renderScene() {
-    console.log('renderScene', this)
+    // console.log('renderScene', this)
 
     return <FirstView navTo={this.navTo.bind(this)}/>
 
   }
 
 
-
   render() {
-    return <NavigationCardStack
+    return <Provider store={store}>
+    <NavigationCardStack
       direction='vertical'
       navigationState={this.state.navigation}
       onNavigate={this.handleNavigate.bind(this)}
       renderScene={this.renderScene.bind(this)} />
+    </Provider>
   }
 }
-
-
-
 
 
 const styles = StyleSheet.create({
@@ -109,4 +106,13 @@ const styles = StyleSheet.create({
   },
 })
 
+let mapStateToProps = (state) => ({
+  // state: state.home
+})
+
+let mapDispatchToProps = (dispatch) => ({
+  // navActions: bindActionCreators( navActions, dispatch ),
+})
+
 export default Root
+// export default connect(mapStateToProps, mapDispatchToProps)(Root)
