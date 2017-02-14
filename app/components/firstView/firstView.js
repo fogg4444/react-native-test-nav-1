@@ -6,18 +6,28 @@ import {
   StyleSheet,
   connect,
   bindActionCreators,
-  navActions
+  navActions,
+  utils
 } from '../../config/globalImports'
 
 
 class FirstView extends React.Component {
+
+  navTo() {
+    let route = utils.generateRoute({
+      title: 'test title',
+      path: 'path-test'
+    })
+    this.props.navActions.push(route)
+  }
+
   render() {
     // console.log('this', this)
     return <View style={styles.container}>
       <Text style={styles.welcome}>
         First View
       </Text>
-      <Button title="Go" onPress={this.props.navTo.bind(this, 'secondView')}/>
+      <Button title="Go" onPress={this.navTo.bind(this)}/>
     </View>
   }
 }

@@ -11,7 +11,7 @@ import {
   Button,
   StyleSheet,
   BackAndroid,
-  NavigationExperimental
+  NavigationExperimental,
 } from '../../config/globalImports'
 
 const {
@@ -69,6 +69,7 @@ class Root extends React.Component {
 
 
   render() {
+    console.log('------ this.props', this)
     return <Provider store={store}>
     <NavigationCardStack
       direction='vertical'
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
 })
 
 let mapStateToProps = (state) => ({
-  // state: state.home
+  navState: state.navState
 })
 
 let mapDispatchToProps = (dispatch) => ({
@@ -109,3 +110,17 @@ let mapDispatchToProps = (dispatch) => ({
 
 export default Root
 // export default connect(mapStateToProps, mapDispatchToProps)(Root)
+
+
+
+
+
+class NavWrapper extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return
+  }
+}

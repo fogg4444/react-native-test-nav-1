@@ -21,26 +21,27 @@ import {
 
 import store from '../store/index'
 
+// actions
 import navActions from '../actions/navActions'
+
+// utilities
+import utils from '../utility/utility'
+
+import * as NavigationStateUtils from 'NavigationStateUtils'
 
 export {
   React,
-
   View,
   Text,
   Button,
   StyleSheet,
   BackAndroid,
   NavigationExperimental,
-
   bindActionCreators,
-
   connect,
   Provider,
-
-
   store,
-
   navActions,
-
+  utils,
+  NavigationStateUtils
 }
