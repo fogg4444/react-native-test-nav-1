@@ -25,7 +25,7 @@ class FirstView extends React.Component {
     // console.log('this', this)
     return <View style={styles.container}>
       <Text style={styles.welcome}>
-        First View
+        First View {this.props.title}
       </Text>
       <Button title="Go" onPress={this.navTo.bind(this)}/>
     </View>

@@ -45,14 +45,24 @@ class NavWrapper extends React.Component {
     console.log('nav to route', route)
   }
 
-  renderScene() {
-    console.log('renderScene', this)
-    return <FirstView navTo={this.navTo.bind(this)}/>
+  renderScene(data) {
+    let navState = data.navigationState
+    let thisRoute = navState.routes[navState.index]
+    console.log('this route', thisRoute)
+    if(thisRoute.path === 'firstView') {
+      return <FirstView title="path identify" />
+    } else {
+      return <FirstView title="all others" />
+    }
+
+
+
+
   }
 
   render() {
     return <NavigationCardStack
-      direction='vertical'
+      direction="vertical"
       navigationState={this.props.navState}
       onNavigate={this.handleNavigate.bind(this)}
       renderScene={this.renderScene.bind(this)} />

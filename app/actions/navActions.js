@@ -15,7 +15,6 @@ const push = (route) => (dispatch, getState) => {
   let state = getState()
   let navState = state.navState
   const { routes, index } = navState
-  //
 
   // if (routes[index].key === route.key)) {
   //   console.log('------ same, dont do anything')
