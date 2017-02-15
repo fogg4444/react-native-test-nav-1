@@ -75,6 +75,7 @@ let mapStateToProps = (state) => ({
 let mapDispatchToProps = (dispatch) => ({
   // navActions: bindActionCreators( navActions, dispatch ),
 })
+
 let NavWrapperConnected = connect(mapStateToProps, mapDispatchToProps)(NavWrapper)
 
 const styles = StyleSheet.create({
